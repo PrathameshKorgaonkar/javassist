@@ -81,7 +81,7 @@ public class ArrayAccessReplaceTest extends TestCase {
 
     public void testInt() throws Exception {
         /*for (int i = 0; i < 100; i++) {*/
-        for (int i = 1; i < 100; i++) {
+        for (int i = 0; i < 100; i++) {
             simple.setInt(i, i);
         }
 
