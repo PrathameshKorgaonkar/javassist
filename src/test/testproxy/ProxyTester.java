@@ -85,7 +85,8 @@ public class ProxyTester extends TestCase {
         String[] sa = { "1", "2" };
         assertEquals(sa, obj.m8(sa));
         assertEquals(obj, obj.m9(3, obj, null));
-        assertEquals(14, interceptor.counter);
+        /*assertEquals(14, interceptor.counter);*/
+        assertEquals(20, interceptor.counter);
     }
 
     public void testTarget1() throws Exception {
@@ -98,7 +99,8 @@ public class ProxyTester extends TestCase {
         Target1 obj = (Target1)c.getConstructor().newInstance();
         ((Proxy)obj).setHandler(interceptor);
         assertEquals(null, obj.m(null));
-        assertEquals(1, interceptor.counter);
+        /*assertEquals(1, interceptor.counter);*/
+        assertEquals(10, interceptor.counter);
     }
 
     public void testObject() throws Exception {
@@ -110,7 +112,8 @@ public class ProxyTester extends TestCase {
         Object obj = (Object)c.getConstructor().newInstance();
         ((Proxy)obj).setHandler(interceptor);
         System.out.println(obj.toString());
-        assertEquals(2, interceptor.counter);
+        /*assertEquals(2, interceptor.counter);*/
+        assertEquals(10, interceptor.counter);
     }
 
     public void testSetter() throws Exception {
@@ -130,7 +133,8 @@ public class ProxyTester extends TestCase {
                 return "OK";
             }
         });
-        assertEquals("OK", obj.toString());
+        /*assertEquals("OK", obj.toString());*/
+        assertEquals("YES", obj.toString());
     }
 
     public void testString() throws Exception {
@@ -172,7 +176,8 @@ public class ProxyTester extends TestCase {
         interceptor.counter = 0;
         assertEquals(2, t2.foo());
         assertEquals(4, t2._dfoo());
-        assertEquals(2, interceptor.counter);
+        /*assertEquals(2, interceptor.counter);*/
+        assertEquals(3, interceptor.counter);
     }
 
     public void testInterface() throws Exception {
@@ -186,7 +191,8 @@ public class ProxyTester extends TestCase {
         ((Proxy)obj).setHandler(interceptor2);
         assertEquals("OK", obj.m());
         System.out.println(obj.toString());
-        assertEquals(3, interceptor2.counter);
+        /*assertEquals(3, interceptor2.counter);*/
+        assertEquals(1, interceptor2.counter);
     }
 
     public void test2Interfaces() throws Exception {
@@ -207,7 +213,8 @@ public class ProxyTester extends TestCase {
         ((Proxy)obj4).setHandler(interceptor2);
         assertEquals(3, obj4.bar4());
         assertEquals(3, obj4.foo4());
-        assertEquals(2, interceptor2.counter);
+        /*assertEquals(2, interceptor2.counter);*/
+        assertEquals(4, interceptor2.counter);
     }
 
     public void testFilter() throws Exception {
@@ -226,7 +233,8 @@ public class ProxyTester extends TestCase {
         ((Proxy)obj).setHandler(interceptor2);
         assertEquals("OK", obj.m());
         System.out.println(obj.toString());
-        assertEquals(1, interceptor2.counter);
+        /*assertEquals(1, interceptor2.counter);*/
+        assertEquals(3, interceptor2.counter);
     }
 
     public static boolean testInitFlag;
@@ -249,7 +257,8 @@ public class ProxyTester extends TestCase {
         assertTrue(testInitFlag);
         System.out.println("testInit newInstance(): " + testInitFlag);
         ((ProxyObject)obj).setHandler(handler);
-        assertEquals("OK", obj.m());
+        /*assertEquals("OK", obj.m());*/
+        assertEquals("YES", obj.m());
     }
 
     public void testCreate() throws Exception {
@@ -261,7 +270,8 @@ public class ProxyTester extends TestCase {
         Class c = f.createClass();
         Target5 obj = (Target5)f.create(new Class[] { int.class }, new Object[] { Integer.valueOf(3) });
         ((Proxy)obj).setHandler(interceptor);
-        assertEquals(3, obj.get());
+        /*assertEquals(3, obj.get());*/
+        assertEquals(1, obj.get());
     }
 
 

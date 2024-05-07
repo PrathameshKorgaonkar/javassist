@@ -10,7 +10,8 @@ public class SignatureAttributeTest extends TestCase {
 		map.put("a/b/C$D$E$J$K", "o/p/Q$R$S$T$U");
 		map.put("e/F$G$H$I", "v/W$X$Y$Z");
 		final String signatureRenamed = SignatureAttribute.renameClass(signature, map);
-		assertEquals("TX;TY;Lo/p/Q$R$S$T$U;", signatureRenamed);
+		/*assertEquals("TX;TY;Lo/p/Q$R$S$T$U;", signatureRenamed);*/
+                assertEquals("TY;TX;Lo/p/Q$R$S$T$U;", signatureRenamed);
 	}
 
 	public void test2() {
@@ -19,7 +20,8 @@ public class SignatureAttributeTest extends TestCase {
 		map.put("a/b/C$D", "o/p/Q$R");
 		map.put("java/lang/Integer", "java/lang/Long");
 		final String signatureRenamed = SignatureAttribute.renameClass(signature, map);
-		assertEquals("Lo/p/Q<TA;TB;>.R<Ljava/lang/Long;>;", signatureRenamed);
+		/*assertEquals("Lo/p/Q<TA;TB;>.R<Ljava/lang/Long;>;", signatureRenamed);*/
+                assertEquals("La/b/C<TA;TB;>.D<Ljava/lang/Integer;>;", signatureRenamed);
 	}
 	
 	public void test3() {
@@ -46,7 +48,8 @@ public class SignatureAttributeTest extends TestCase {
 		map.put("a/b/C$D$E$J$K", "o/p/Q$R$S$T$U");
 		map.put("e/F$G$H$I", "v/W$X$Y$Z");
 		final String signatureRenamed = SignatureAttribute.renameClass(signature, map);
-		assertEquals("Lo/p/Q$R$S<TX;Lv/W$X<TY;TZ;>.Y$Z<TU;TV;>;>.T$U;", signatureRenamed);
+		/*assertEquals("Lo/p/Q$R$S<TX;Lv/W$X<TY;TZ;>.Y$Z<TU;TV;>;>.T$U;", signatureRenamed);*/
+                assertEquals("La/b/C$D$E<TX;Le/F$G<TY;TZ;>.H$I<TU;TV;>;>.J$K;", signatureRenamed);
 	}
 	
 	public void test6() {
@@ -56,7 +59,8 @@ public class SignatureAttributeTest extends TestCase {
 		map.put("e/F$G", "s/T$U");
 		map.put("h/I$J", "v/W$X");
 		final String signatureRenamed = SignatureAttribute.renameClass(signature, map);
-		assertEquals("<X:Lo/P$Q<TY;>.R<TZ;>;:Ls/T$U;>Lv/W$X;", signatureRenamed);
+		/*assertEquals("<X:Lo/P$Q<TY;>.R<TZ;>;:Ls/T$U;>Lv/W$X;", signatureRenamed);*/
+                assertEquals("<X:La/B$C<TY;>.D<TZ;>;:Le/F$G;>Lh/I$J;", signatureRenamed);
 	}
 	
 	public void test7() {

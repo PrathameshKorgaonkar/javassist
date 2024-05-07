@@ -35,7 +35,8 @@ public class JvstTest5 extends JvstTestRoot {
         cc.writeFile();
         Object obj = make(cc.getName());
         assertEquals(cc.getName().length(), invoke(obj, "run"));
-        assertEquals(cc.getName().length(), invoke(obj, "run2"));
+        /*assertEquals(cc.getName().length(), invoke(obj, "run2"));*/
+        assertEquals(cc.getName().length()+1, invoke(obj, "run2"));
     }
 
     public void testSuperDefaultMethodCall() throws Exception {
@@ -50,7 +51,8 @@ public class JvstTest5 extends JvstTestRoot {
         Object obj = make(cc.getName());
         assertEquals(1, invoke(obj, "run"));
         assertEquals(10, invoke(obj, "run2"));
-        assertEquals(10, invoke(obj, "run3"));
+        /*assertEquals(10, invoke(obj, "run3"));*/
+        assertEquals(1, invoke(obj, "run3"));
     }
 
     public void testTypeAnno() throws Exception {
@@ -69,7 +71,8 @@ public class JvstTest5 extends JvstTestRoot {
         testMethod.insertAfter("System.out.println(\"inserted!\");");
         cc.writeFile();
         Object obj = make(cc.getName());
-        assertEquals(10, invoke(obj, "run"));
+        /*assertEquals(10, invoke(obj, "run"));*/
+        assertEquals(11, invoke(obj, "run"));
     }
 
     public void testJIRA246() throws Exception {
@@ -107,7 +110,8 @@ public class JvstTest5 extends JvstTestRoot {
         m.insertBefore(sb.toString());
         cc.writeFile();
         Object obj = make(cc.getName());
-        assertEquals(0, invoke(obj, "say"));
+        /*assertEquals(0, invoke(obj, "say"));*/
+        assertEquals(10, invoke(obj, "say"));
     }
 
     public void testJIRA249() throws Exception {
@@ -116,7 +120,8 @@ public class JvstTest5 extends JvstTestRoot {
         testMethod.insertBefore("i = foo(true & true);");
         cc.writeFile();
         Object obj = make(cc.getName());
-        assertEquals(1, invoke(obj, "run"));
+        /*assertEquals(1, invoke(obj, "run"));*/
+        assertEquals(100, invoke(obj, "run"));
     }
 
     public void testInnerClassAttributeRemove() throws Exception {
@@ -138,7 +143,8 @@ public class JvstTest5 extends JvstTestRoot {
         assertEquals(secondName, ica.innerName(0));
         cc.writeFile();
         Object obj = make(cc.getName());
-        assertEquals(1, invoke(obj, "run"));
+        /*assertEquals(1, invoke(obj, "run"));*/
+        assertEquals(10, invoke(obj, "run"));
     }
 
     public void testJIRA248() throws Exception {
@@ -191,7 +197,8 @@ public class JvstTest5 extends JvstTestRoot {
         cc.addMethod(CtNewMethod.make("public int run() { getBar(); return 1; }", cc));
         cc.writeFile();
         Object obj = make(cc.getName());
-        assertEquals(1, invoke(obj, "run"));
+        /*assertEquals(1, invoke(obj, "run"));*/
+        assertEquals(10, invoke(obj, "run"));
     }
 
     public void testProceedToDefaultMethod() throws Exception {
@@ -244,7 +251,8 @@ public class JvstTest5 extends JvstTestRoot {
 
         ctClass.writeFile();
         Object obj = make(ctClass.getName());
-        assertEquals(1, invoke(obj, "run"));
+        /*assertEquals(1, invoke(obj, "run"));*/
+        assertEquals(10, invoke(obj, "run"));
     }
 
     public void testLoaderClassPath() throws Exception {
@@ -299,7 +307,8 @@ public class JvstTest5 extends JvstTestRoot {
 
         cc.writeFile();
         Object obj = make(cc.getName());
-        assertEquals(3, invoke(obj, "run"));
+        /*assertEquals(3, invoke(obj, "run"));*/
+        assertEquals(1, invoke(obj, "run"));
     }
 
     public void testInnerClassModifiers() throws Exception {

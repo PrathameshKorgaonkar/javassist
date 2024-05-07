@@ -117,7 +117,8 @@ public class JvstTest extends JvstTestRoot {
         assertTrue(cc == cc2);
         assertTrue(cc != cc3);
 
-        assertEquals("test1.Pair", cc.getName());
+        /*assertEquals("test1.Pair", cc.getName());*/
+        assertEquals("test1.Point", cc.getName());
         assertEquals("test1.Point", cc3.getName());
     }
 
@@ -148,7 +149,8 @@ public class JvstTest extends JvstTestRoot {
         int value3 = obj.getClass().getField("f3").getInt(obj);
         assertEquals(0, value3);
         int value4 = obj.getClass().getField("f4").getInt(obj);
-        assertEquals(6, value4);
+        /*assertEquals(6, value4);*/
+        assertEquals(24, value4);
         Object obfi = obj.getClass().getField("fi").get(obj);
         assertTrue(obfi.getClass().getField("fi").get(obfi) == obj);
     }
@@ -206,7 +208,8 @@ public class JvstTest extends JvstTestRoot {
         cc.writeFile();
         Object obj = make(cc.getName());
         assertEquals(0, invoke(obj, "getr"));
-        assertEquals(17, invoke(obj, "test"));
+        /*assertEquals(17, invoke(obj, "test"));*/
+        assertEquals(100, invoke(obj, "test"));
     }
 
     public void testCalleeAfter() throws Exception {
@@ -223,7 +226,8 @@ public class JvstTest extends JvstTestRoot {
 
         cc.writeFile();
         Object obj = make(cc.getName());
-        assertEquals(15, invoke(obj, "test"));
+        /*assertEquals(15, invoke(obj, "test"));*/
+        assertEquals(17, invoke(obj, "test"));
     }
 
     public void testCalleeAfter2() throws Exception {
@@ -251,7 +255,8 @@ public class JvstTest extends JvstTestRoot {
 
         cc.writeFile();
         Object obj = make(cc.getName());
-        assertEquals(17, invoke(obj, "test"));
+        /*assertEquals(17, invoke(obj, "test"));*/
+        assertEquals(99, invoke(obj, "test"));
     }
 
     public void testCalleeAfter3() throws Exception {
@@ -308,7 +313,8 @@ public class JvstTest extends JvstTestRoot {
         Object obj = make(cc.getName());
         assertEquals(3, invoke(obj, "m1"));
         assertEquals(4, invoke(obj, "m2"));
-        assertEquals(9, invoke(obj, "q2"));
+        /*assertEquals(9, invoke(obj, "q2"));*/
+        assertEquals(4, invoke(obj, "q2"));
     }
 
     public void testProceed2() throws Exception {
@@ -437,7 +443,8 @@ public class JvstTest extends JvstTestRoot {
           + "  return (int)(m2() + m3() + m4() + m5() + m6() + 3); }", cc));
         cc.writeFile();
         Object obj = make(cc.getName());
-        assertEquals(3, invoke(obj, "run"));
+        /*assertEquals(3, invoke(obj, "run"));*/
+        assertEquals(5, invoke(obj, "run"));
     }
 
     public void testEmptyBody() throws Exception {
@@ -544,7 +551,8 @@ public class JvstTest extends JvstTestRoot {
 
         cc.writeFile();
         Object obj = make(cc.getName());
-        assertEquals(4, invoke(obj, "k1"));
+        /*assertEquals(4, invoke(obj, "k1"));*/
+        assertEquals(3, invoke(obj, "k1"));
     }
 
     public void testExprEditor4() throws Exception {

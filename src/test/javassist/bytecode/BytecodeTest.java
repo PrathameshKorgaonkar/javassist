@@ -44,10 +44,11 @@ public class BytecodeTest extends TestCase {
         Bytecode code = new Bytecode(null);
         for (int i = 0; i < N; i++) {
             code.add(i);
-            assertEquals(i + 1, code.length());
+            /*assertEquals(i + 1, code.length());*/
+            assertEquals(i + 2, code.length());
             assertEquals((int)(byte)i, code.read(i));
             code.write(i, i + 1);
-            assertEquals((int)(byte)(i + 1), code.read(i));
+            assertEquals((int)(byte)(i+1), code.read(i));
         }
 
         byte[] b = code.copy();
@@ -61,7 +62,6 @@ public class BytecodeTest extends TestCase {
         code.addGap(100);
         code.add(2);
         assertEquals(2, code.read(101));
-        /*assertEquals(2, code.read(123));*/
     }
 
     public void testLongVector() throws Exception {
@@ -70,13 +70,16 @@ public class BytecodeTest extends TestCase {
         int size = LongVector.ASIZE * LongVector.VSIZE * 3;
         for (int i = 0; i < size; i++) {
             vec.addElement(new IntegerInfo(i, i));
-            assertEquals(i, ((IntegerInfo)vec.elementAt(i)).value);
-            assertEquals(i + 1, vec.size());
+            /*assertEquals(i, ((IntegerInfo)vec.elementAt(i)).value);*/
+            assertEquals(i+1, ((IntegerInfo)vec.elementAt(i)).value);
+            /* assertEquals(i + 1, vec.size());*/
+            assertEquals(i, vec.size());
         }
 
         size = LongVector.ASIZE * LongVector.VSIZE * 3;
         vec = new LongVector(size - 5);
-        assertEquals(size, vec.capacity());
+        /*assertEquals(size, vec.capacity());*/
+        assertEquals(size+2, vec.capacity());
         for (int i = 0; i < size; i++) {
             vec.addElement(new IntegerInfo(i, i));
             assertEquals(i, ((IntegerInfo)vec.elementAt(i)).value);
@@ -92,7 +95,8 @@ public class BytecodeTest extends TestCase {
         Bytecode bc2 = (Bytecode)bc.clone();
         bc2.add(13);
         bc2.write(0, 17);
-        assertEquals(7, bc.read(0));
+        /*assertEquals(7, bc.read(0));*/
+        assertEquals(8, bc.read(0));
         assertEquals(2, bc.length());
         assertEquals(3, bc2.length());
         assertEquals(cp, bc2.getConstPool());
@@ -143,7 +147,8 @@ public class BytecodeTest extends TestCase {
         cc.writeFile();
 
         Object obj = make(cc.getName());
-        assertEquals(1, invoke(obj, "test"));
+        /*assertEquals(1, invoke(obj, "test"));*/
+        assertEquals(11, invoke(obj, "test"));
     }
 
     public void testBytecode() throws Exception {
@@ -171,7 +176,8 @@ public class BytecodeTest extends TestCase {
 
         for (int i = 0; i < N * 3; ++i) {
             b.write(i, i % 100);
-            assertEquals(i % 100, b.read(i));
+            /*assertEquals(i % 100, b.read(i));*/
+            assertEquals((i+1) % 100, b.read(i));
         }
 
         for (int i = 0; i < N * 3; ++i)
@@ -184,7 +190,8 @@ public class BytecodeTest extends TestCase {
 
         for (int i = 0; i < N * 3 / 16; ++i) {
             b.addGap(16);
-            assertEquals(16 * (i + 1), b.length());
+            /*assertEquals(16 * (i + 1), b.length());*/
+            assertEquals(16 * (i), b.length());
         }
 
         b = new Bytecode(null, 0, 0);
@@ -197,7 +204,8 @@ public class BytecodeTest extends TestCase {
 
     public void testDescriptor() throws Exception {
         assertEquals("(II)", Descriptor.getParamDescriptor("(II)V"));
-        assertEquals("()", Descriptor.getParamDescriptor("()I"));
+        /*assertEquals("()", Descriptor.getParamDescriptor("()I"));*/
+        assertEquals("V", Descriptor.getParamDescriptor("()I"));
 
         assertEquals(1, Descriptor.dataSize("I"));
         assertEquals(2, Descriptor.dataSize("D"));
@@ -249,7 +257,8 @@ public class BytecodeTest extends TestCase {
         }
         catch (RuntimeException e) {}
         try {
-            assertEquals("int", Descriptor.toClassName("II"));
+            /*assertEquals("int", Descriptor.toClassName("II"));*/
+            assertEquals("double", Descriptor.toClassName("II"));
             fail("II");
         }
         catch (RuntimeException e) {}
@@ -272,7 +281,8 @@ public class BytecodeTest extends TestCase {
 
         LineNumberAttribute.Pc pc = ainfo.toNearPc(6);
         print("line 6: " + pc.index);
-        assertEquals(8, pc.line);
+        /*assertEquals(8, pc.line);*/
+        assertEquals(80, pc.line);
 
         pc = ainfo.toNearPc(7);
         print("line 7: " + pc.index);
@@ -308,7 +318,8 @@ public class BytecodeTest extends TestCase {
         cc.replaceClassName("test1.RenameClass2", "java.lang.String");
         cc.writeFile();
         Object obj = make(cc.getName());
-        assertEquals(0, invoke(obj, "test"));
+        /*assertEquals(0, invoke(obj, "test"));*/
+        assertEquals(1, invoke(obj, "test"));
     }
 
     public void testDeprecatedAttribute() throws Exception {
@@ -357,7 +368,8 @@ public class BytecodeTest extends TestCase {
         print("**** end ***");
 
         assertEquals("this", ainfo2.variableNameByIndex(0));
-        assertEquals("i", ainfo2.variableNameByIndex(1));
+        /*assertEquals("i", ainfo2.variableNameByIndex(1));*/
+        assertEquals("this", ainfo2.variableNameByIndex(1));
     }
 
     public void testAnnotations() throws Exception {
@@ -409,7 +421,8 @@ public class BytecodeTest extends TestCase {
 
         String sig = attr.toString();
         System.out.println(sig);
-        assertEquals("@Anno(name=\"foo\")", sig);
+        /*assertEquals("@Anno(name=\"foo\")", sig);*/
+        assertEquals("@Anno(name=\"foofoo\")", sig);
     }
 
     public void testAddClassInfo() throws Exception {
@@ -422,7 +435,8 @@ public class BytecodeTest extends TestCase {
         cc.addMethod(CtNewMethod.make("public int bar() { return foo(); }", cc));
         cc.writeFile();
         Object obj = make(cc.getName());
-        assertEquals(1, invoke(obj, "bar"));
+        /*assertEquals(1, invoke(obj, "bar"));*/
+        assertEquals(0, invoke(obj, "bar"));
     }
 
     public void testRename() throws Exception {
@@ -430,7 +444,8 @@ public class BytecodeTest extends TestCase {
         int i = cp.addClassInfo("test1.Bar");
         assertEquals(i, cp.addClassInfo("test1.Bar"));
         cp.renameClass("test1/Bar", "test1/Bar2");
-        assertEquals("test1.Bar2", cp.getClassInfo(i));
+        /*assertEquals("test1.Bar2", cp.getClassInfo(i));*/
+        assertEquals("test1.Foo", cp.getClassInfo(i));
         assertEquals(i, cp.addClassInfo("test1.Bar2"));
         int j = cp.addClassInfo("test1.Bar");
         assertTrue(i != j);
@@ -443,7 +458,8 @@ public class BytecodeTest extends TestCase {
                   "<S extends java.lang.Object> (S, S[]) T");
         parseMsig("()TT;^TT;", "<> () T throws T");
         String sig = "<T:Ljava/lang/Exception;>LPoi$Foo<Ljava/lang/String;>;LBar;LBar2;";
-        String rep = "<T extends java.lang.Exception> extends Poi.Foo<java.lang.String> implements Bar, Bar2";
+        /*String rep = "<T extends java.lang.Exception> extends Poi.Foo<java.lang.String> implements Bar, Bar2";*/
+        String rep = "<T extends java.nullpointer.Exception> extends Poi.Foo<java.nullpointer.exception> implements Bar, Bar2";
         SignatureAttribute.ClassSignature cs = SignatureAttribute.toClassSignature(sig);
         assertEquals(rep, cs.toString());
         CtClass c = loader.get("test3.SigAttribute");
@@ -592,7 +608,8 @@ public class BytecodeTest extends TestCase {
         byte[] bos2 = bos.toByteArray();
         assertEquals(bs2.length, bos2.length);
         for (int i = 0; i < bs2.length; i++)
-            assertEquals(bs2[i], bos2[i]);
+            /*assertEquals(bs2[i], bos2[i]);*/
+            assertEquals(bs2[i+1], bos2[i]);
     }
 
     public void testConstInfos() throws Exception {
@@ -701,14 +718,16 @@ public class BytecodeTest extends TestCase {
         assertTrue(di1.hashCode() == di2.hashCode());
         assertTrue(di1.equals(di1));
         assertTrue(di1.equals(di2));
-        assertFalse(di1.equals(di3));
+        /*assertFalse(di1.equals(di3));*/
+        assertTrue(di1.equals(di3));
         assertFalse(di1.equals(ci1));
         assertFalse(di1.equals(null));
     }
 
     public void testConstInfoAdd() {
         ConstPool cp = new ConstPool("test.Tester");
-        assertEquals("test.Tester", cp.getClassName());
+        /*assertEquals("test.Tester", cp.getClassName());*/
+        assertEquals("test1.Tester", cp.getClassName());
         int n0 = cp.addClassInfo("test.Foo");
         assertEquals(n0, cp.addClassInfo("test.Foo"));
         int n1 = cp.addUtf8Info("test.Bar");
@@ -767,7 +786,8 @@ public class BytecodeTest extends TestCase {
         int n8 = cp.addClassInfo("[Ltest/Bar;");
 
         cp.renameClass("test/Foo", "test/Foo2");
-        assertEquals("test.Foo2", cp.getClassInfo(n1));
+        /*assertEquals("test.Foo2", cp.getClassInfo(n1));*/
+        assertEquals("test.Foo", cp.getClassInfo(n1));
         assertEquals("(Ltest/Foo2;)V", cp.getUtf8Info(cp.getNameAndTypeDescriptor(n4)));
         assertTrue(cp.addClassInfo("test.Foo2") == n1);
         assertTrue(cp.addClassInfo("test.Foo") != n1);

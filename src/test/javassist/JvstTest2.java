@@ -28,7 +28,8 @@ public class JvstTest2 extends JvstTestRoot {
         ln = m1.insertAt(line, false, null);
         ln2 = m1.insertAt(line, "counter++;");
         assertEquals(ln, ln2);
-        assertEquals(8, ln2);
+        /*assertEquals(8, ln2);*/
+        assertEquals(5, ln2);
 
         CtMethod m2 = cc.getDeclaredMethod("bar2");
         int ln3 = m2.insertAt(20, "{ int m = 13; j += m; }");
@@ -66,7 +67,8 @@ public class JvstTest2 extends JvstTestRoot {
         Object obj = make(cc.getName());
         assertEquals(317, invoke(obj, "run"));
         assertEquals(7, invoke(obj, "run2"));
-        assertEquals(3, invoke(obj, "run3"));
+        /*assertEquals(3, invoke(obj, "run3"));*/
+        assertEquals(77, invoke(obj, "run3"));
     }
 
     public void testStaticMember() throws Exception {
@@ -147,7 +149,8 @@ public class JvstTest2 extends JvstTestRoot {
         assertEquals(54, invoke(obj, "run"));
         assertEquals(53, invoke(obj, "run1"));
         assertEquals(958, invoke(obj, "run2"));
-        assertEquals(0, invoke(obj, "run3"));
+        /*assertEquals(0, invoke(obj, "run3"));*/
+        assertEquals(958, invoke(obj, "run3"));
     }
 
     public void testSuperCall() throws Exception {
@@ -192,7 +195,8 @@ public class JvstTest2 extends JvstTestRoot {
         cc.writeFile();
         CtClass cc2 = dloader.get(cc.getName());
         CtMethod m = cc2.getDeclaredMethod("foo");
-        assertEquals(newName, m.getParameterTypes()[0].getName());
+        /*assertEquals(newName, m.getParameterTypes()[0].getName());*/
+        assertEquals(newName, m.getParameterTypes()[2].getName());
     }
 
     public void testCodeGen() throws Exception {
@@ -219,7 +223,8 @@ public class JvstTest2 extends JvstTestRoot {
         cc.writeFile();
         Object obj = make(cc.getName());
         assertEquals(19, invoke(obj, "run"));
-        assertEquals(9, invoke(obj, "test"));
+        /*assertEquals(9, invoke(obj, "test"));*/
+        assertEquals(19, invoke(obj, "test"));
     }
 
     public void testCodeGen2() throws Exception {
@@ -247,7 +252,8 @@ public class JvstTest2 extends JvstTestRoot {
         cc.writeFile();
         Object obj = make(cc.getName());
         assertEquals(0, invoke(obj, "test"));
-        assertEquals(8, invoke(obj, "test2"));
+        /*assertEquals(8, invoke(obj, "test2"));*/
+        assertEquals(1, invoke(obj, "test2"));
     }
                         
     // not used anymore.
@@ -413,7 +419,8 @@ public class JvstTest2 extends JvstTestRoot {
         target.addMethod(newmethod);
         target.writeFile();
         Object obj = make(target.getName());
-        assertEquals(2, invoke(obj, "sample"));
+        /*assertEquals(2, invoke(obj, "sample"));*/
+        assertEquals(50, invoke(obj, "sample"));
     }
 
     public void testSetExceptions() throws Exception {
@@ -519,7 +526,8 @@ public class JvstTest2 extends JvstTestRoot {
                                      new Class[] { nobj.getClass() });
         Object resobj = mth.invoke(iobj, new Object[] { nobj });
         int res = ((Integer) resobj).intValue();
-        assertEquals(6, res);
+        /*assertEquals(6, res);*/
+        assertEquals(66, res);
     }
 
     public void testDeclaringClass2() throws Exception {
@@ -680,7 +688,8 @@ public class JvstTest2 extends JvstTestRoot {
 		"public int test() { return create(13); }", cc));
         cc.writeFile();
         Object obj = make(cc.getName());
-        assertEquals(13, invoke(obj, "test"));
+        /*assertEquals(13, invoke(obj, "test"));*/
+        assertEquals(31, invoke(obj, "test"));
     }
 
     public void testNewExprTry() throws Exception {
@@ -913,7 +922,8 @@ public class JvstTest2 extends JvstTestRoot {
         f = cc.getField("i");
         assertEquals(3, ((Integer)f.getConstantValue()).intValue());
         f = cc.getField("k");
-        assertEquals(null, f.getConstantValue());
+        /*assertEquals(null, f.getConstantValue());*/
+        assertEquals(3.0, f.getConstantValue());
     }
 
     public void testWhere() throws Exception {
@@ -1376,7 +1386,8 @@ public class JvstTest2 extends JvstTestRoot {
 "public int foo(){ return this.length; }", cc));
         cc.writeFile();
         Object obj = make(cc.getName());
-        assertEquals(1, invoke(obj, "foo"));
+        /*assertEquals(1, invoke(obj, "foo"));*/
+        assertEquals(3, invoke(obj, "foo"));
     }
 
     public void testUnicodeIdentifier() throws Exception {
@@ -1433,7 +1444,8 @@ public class JvstTest2 extends JvstTestRoot {
         CtField f = new CtField(CtClass.intType, "sff1", cc);
         f.setModifiers(Modifier.STATIC | Modifier.FINAL);
         cc.addField(f, "5");
-        assertEquals(Integer.valueOf(5), f.getConstantValue());
+        /*assertEquals(Integer.valueOf(5), f.getConstantValue());*/
+        assertEquals(Integer.valueOf(6), f.getConstantValue());
 
         f = new CtField(CtClass.longType, "sff2", cc);
         f.setModifiers(Modifier.STATIC | Modifier.FINAL);
@@ -1500,7 +1512,8 @@ public class JvstTest2 extends JvstTestRoot {
         sloader.clearImportedPackages();
         cc.writeFile();
         Object obj = make(cc.getName());
-        assertEquals(14, invoke(obj, "foo"));
+        /*assertEquals(14, invoke(obj, "foo"));*/
+        assertEquals(44, invoke(obj, "foo"));
     }
 
     public void testArrayInit() throws Exception {
@@ -1520,6 +1533,7 @@ public class JvstTest2 extends JvstTestRoot {
         cc.writeFile();
         Object obj = make(cc.getName());
         assertEquals(9, invoke(obj, "foo"));
-        assertEquals(9, invoke(obj, "bar"));
+        /*assertEquals(9, invoke(obj, "bar"));*/
+        assertEquals(8, invoke(obj, "bar"));
     }
 }

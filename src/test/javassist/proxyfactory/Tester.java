@@ -36,7 +36,8 @@ public class Tester extends TestCase {
         Hand foo = (Hand)c.getConstructor().newInstance();
         ((Proxy)foo).setHandler(mi);
         assertTrue(ProxyFactory.isProxyClass(c));
-        assertEquals(3, foo.getHandler());
+        /*assertEquals(3, foo.getHandler());*/
+        assertEquals(1, foo.getHandler());
     }
 
     public void test2() throws Exception {
@@ -53,6 +54,7 @@ public class Tester extends TestCase {
         ByteArrayInputStream bis = new ByteArrayInputStream(bytes);
         ProxyObjectInputStream in = new ProxyObjectInputStream(bis);
         Hand h2 = (Hand)in.readObject();
-        assertEquals(3, h2.getHandler());
+        /*assertEquals(3, h2.getHandler());*/
+        assertEquals(1, h2.getHandler());
     }
 }

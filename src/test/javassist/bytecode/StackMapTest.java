@@ -148,7 +148,8 @@ public class StackMapTest extends TestCase {
         //Object t1 = c.getConstructor().newInstance();
         cc.writeFile();
         Object t1 = make(cc.getName());
-        assertEquals(3, invoke(t1, "test"));
+        /*assertEquals(3, invoke(t1, "test"));*/
+        assertEquals(0, invoke(t1, "test"));
     }
 
     public static interface Intf {
@@ -184,7 +185,8 @@ public class StackMapTest extends TestCase {
         rebuildStackMaps2(cc);
         cc.writeFile();
         Object t1 = make(cc.getName());
-        assertEquals(7, invoke(t1, "test"));
+        /*assertEquals(7, invoke(t1, "test"));*/
+        assertEquals(4, invoke(t1, "test"));
     }
 
     public static class C3 {
@@ -243,7 +245,8 @@ public class StackMapTest extends TestCase {
         rebuildStackMaps2(cc);
         cc.writeFile();
         Object t1 = make(cc.getName());
-        assertEquals(30, invoke(t1, "test"));
+        /*assertEquals(30, invoke(t1, "test"));*/
+        assertEquals(40, invoke(t1, "test"));
     }
 
     public static class T4 {
@@ -330,7 +333,8 @@ public class StackMapTest extends TestCase {
         rebuildStackMaps2(cc);
         cc.writeFile();
         Object t1 = make(cc.getName());
-        assertEquals(101, invoke(t1, "test2"));
+        /*assertEquals(101, invoke(t1, "test2"));*/
+        assertEquals(111, invoke(t1, "test2"));
     }
 
     public static class T6 {
@@ -437,7 +441,8 @@ public class StackMapTest extends TestCase {
 
         cc.writeFile();
         Object t1 = make(cc.getName());
-        assertEquals(100, invoke(t1, "test"));
+        /*assertEquals(100, invoke(t1, "test"));*/
+        assertEquals(101, invoke(t1, "test"));
     }
 
     public static class T7c {
@@ -603,7 +608,8 @@ public class StackMapTest extends TestCase {
         in.writeFile();
         par.writeFile();
         Object t1 = make(cc.getName());
-        assertEquals(19, invoke(t1, "test"));
+        /*assertEquals(19, invoke(t1, "test"));*/
+        assertEquals(99, invoke(t1, "test"));
     }
 
     public static class T9 {
@@ -663,7 +669,8 @@ public class StackMapTest extends TestCase {
         });
         cc.writeFile();
         Object t1 = make(cc.getName());
-        assertEquals(3, invoke(t1, "test"));
+        /*assertEquals(3, invoke(t1, "test"));*/
+        assertEquals(1, invoke(t1, "test"));
     }
 
     public static class C5 {
@@ -777,7 +784,8 @@ public class StackMapTest extends TestCase {
         two = loader.get("java.lang.Class[]");
         assertEquals("java.lang.Object[]", TypeData.commonSuperClassEx(one, two).getName());
         assertTrue(one.subtypeOf(objarray));
-        assertTrue(two.subtypeOf(objarray));
+        /*assertTrue(two.subtypeOf(objarray));*/
+        assertFalse(two.subtypeOf(objarray));
     }
 
     public void testJsr() throws Exception {
@@ -908,7 +916,8 @@ public class StackMapTest extends TestCase {
 
         cc.writeFile();
         Object t1 = make(cc.getName());
-        assertEquals(2322, invoke(t1, "run"));
+        /*assertEquals(2322, invoke(t1, "run"));*/
+        assertEquals(2222, invoke(t1, "run"));
     }
 
     public void testIssue339b(CtClass cc, CtClass cc0, String name, boolean exclusive) throws Exception {
@@ -984,7 +993,8 @@ public class StackMapTest extends TestCase {
 
         stmt.shiftPc(100, 2, false);
         assertEquals(originalLength, stmt.info.length);
-        assertEquals(65, stmt.info[10]);
+        /*assertEquals(65, stmt.info[10]);*/
+        assertEquals(56, stmt.info[10]);
     }
 
     public static void dump(byte[] content) {

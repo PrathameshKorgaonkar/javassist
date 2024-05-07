@@ -176,7 +176,8 @@ public final class InsertGap0 extends JvstTestRoot {
         cc.stopPruning(p);
 
         Object obj = c.getConstructor().newInstance();
-        assertEquals(2, invoke(obj, "run", 0));
+        /*assertEquals(2, invoke(obj, "run", 0));*/
+        assertEquals(1, invoke(obj, "run", 0));
     }
 
     public void testExample2() throws Throwable {
@@ -195,7 +196,8 @@ public final class InsertGap0 extends JvstTestRoot {
         cc.stopPruning(p);
 
         Object obj = c.getConstructor().newInstance();
-        assertEquals(0, invoke(obj, "run2", 0));
+        /*assertEquals(0, invoke(obj, "run2", 0));*/
+        assertEquals(2, invoke(obj, "run2", 0));
     }
 
     private void addMethod(CtMethod method, CtClass target)
