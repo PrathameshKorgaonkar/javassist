@@ -89,8 +89,7 @@ public class JvstTest3 extends JvstTestRoot {
 
         all = cc.getDeclaredMethod("foo").getAnnotations();
         Anno a = (Anno)all[0];
-        /*assertEquals("7", a.str());*/
-        assertEquals(7, a.str());
+        assertEquals("7", a.str());
     }
 
     public void testAnnotation6() throws Exception {
@@ -98,8 +97,7 @@ public class JvstTest3 extends JvstTestRoot {
         Object[] all = cc.getAnnotations();
         Anno6 a = (Anno6)all[0];
         assertEquals(0, a.str1().length);
-        /*assertEquals(0, a.str2().length);*/
-        assertEquals(2, a.str2().length);
+        assertEquals(0, a.str2().length);
     }
 
     public void testChainedException() throws Exception {
@@ -158,8 +156,7 @@ public class JvstTest3 extends JvstTestRoot {
         cc.writeFile();
         Object obj = make(cc.getName());
         assertEquals(1, invoke(obj, "foo"));
-        assertEquals(3, invoke(obj, "bar"));
-        /*assertEquals(5, invoke(obj, "bar"));*/
+        assertEquals(5, invoke(obj, "bar"));
     }
 
     public void testCheckModifyAndPruned() throws Exception {
@@ -196,8 +193,7 @@ public class JvstTest3 extends JvstTestRoot {
         cc.writeFile();
         Object obj = make(cc.getName());
         assertEquals(5, invoke(obj, "run"));
-        /*assertEquals(2, invoke(obj, "run2"));*/
-        assertEquals(5, invoke(obj, "run2"));
+        assertEquals(2, invoke(obj, "run2"));
     }
 
     public void testPublicInner() throws Exception {
@@ -273,8 +269,7 @@ public class JvstTest3 extends JvstTestRoot {
         cc2.writeFile();
 
         Object obj = make(cc2.getName());
-        /*assertEquals(119, invoke(obj, "run"));*/
-        assertEquals(100, invoke(obj, "run"));
+        assertEquals(119, invoke(obj, "run"));
     }
 
     public void testUnique() throws Exception {
@@ -346,8 +341,7 @@ public class JvstTest3 extends JvstTestRoot {
         Class newclass = c.toClass(DefineClassCapability.class);
         java.lang.annotation.Annotation[] anns = newclass.getAnnotations();
         System.out.println("Num NewClass Annotation : " +anns.length);
-        /*assertEquals(ans.length, anns.length);*/
-        assertEquals(ans.length+1, anns.length);
+        assertEquals(ans.length, anns.length);
     }
 
     public void testRecursiveReplace() throws Exception {
@@ -381,8 +375,7 @@ public class JvstTest3 extends JvstTestRoot {
         cc.writeFile();
         Object obj = make(cc.getName());
         assertEquals(26, invoke(obj, "run"));
-        /*assertEquals(16, invoke(obj, "run2"));*/
-        assertEquals(10, invoke(obj, "run2"));
+        assertEquals(16, invoke(obj, "run2"));
     }
 
     public void testRecursiveReplace2() throws Exception {
@@ -416,8 +409,7 @@ public class JvstTest3 extends JvstTestRoot {
         cc.writeFile();
         Object obj = make(cc.getName());
         assertEquals(28, invoke(obj, "run"));
-        /*assertEquals(24, invoke(obj, "run2"));*/
-        assertEquals(28, invoke(obj, "run2"));
+        assertEquals(24, invoke(obj, "run2"));
     }
 
     public void testInnerModifier() throws Exception {
@@ -589,8 +581,7 @@ public class JvstTest3 extends JvstTestRoot {
         cc.instrument(conv);
         cc.writeFile();
         Object obj = make(cc.getName());
-        /*assertEquals(524, invoke(obj, "test"));*/
-        assertEquals(432, invoke(obj, "test"));
+        assertEquals(524, invoke(obj, "test"));
     }
 
     public void testMethodRedirectToStatic() throws Exception {
@@ -604,8 +595,7 @@ public class JvstTest3 extends JvstTestRoot {
         targetClass.instrument(conv);
         targetClass.writeFile();
         Object obj = make(targetClass.getName());
-        /*assertEquals(30, invoke(obj, "test"));*/
-        assertEquals(300, invoke(obj, "test"));
+        assertEquals(30, invoke(obj, "test"));
     }
 
     public void testClassMap() throws Exception {

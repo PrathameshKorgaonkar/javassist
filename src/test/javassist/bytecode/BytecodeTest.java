@@ -44,8 +44,7 @@ public class BytecodeTest extends TestCase {
         Bytecode code = new Bytecode(null);
         for (int i = 0; i < N; i++) {
             code.add(i);
-            /*assertEquals(i + 1, code.length());*/
-            assertEquals(i + 2, code.length());
+            assertEquals(i + 1, code.length());
             assertEquals((int)(byte)i, code.read(i));
             code.write(i, i + 1);
             assertEquals((int)(byte)(i+1), code.read(i));
@@ -70,16 +69,13 @@ public class BytecodeTest extends TestCase {
         int size = LongVector.ASIZE * LongVector.VSIZE * 3;
         for (int i = 0; i < size; i++) {
             vec.addElement(new IntegerInfo(i, i));
-            /*assertEquals(i, ((IntegerInfo)vec.elementAt(i)).value);*/
-            assertEquals(i+1, ((IntegerInfo)vec.elementAt(i)).value);
-            /* assertEquals(i + 1, vec.size());*/
-            assertEquals(i, vec.size());
+            assertEquals(i, ((IntegerInfo)vec.elementAt(i)).value);
+            assertEquals(i+1, vec.size());
         }
 
         size = LongVector.ASIZE * LongVector.VSIZE * 3;
         vec = new LongVector(size - 5);
-        /*assertEquals(size, vec.capacity());*/
-        assertEquals(size+2, vec.capacity());
+        assertEquals(size, vec.capacity());
         for (int i = 0; i < size; i++) {
             vec.addElement(new IntegerInfo(i, i));
             assertEquals(i, ((IntegerInfo)vec.elementAt(i)).value);
@@ -190,8 +186,7 @@ public class BytecodeTest extends TestCase {
 
         for (int i = 0; i < N * 3 / 16; ++i) {
             b.addGap(16);
-            /*assertEquals(16 * (i + 1), b.length());*/
-            assertEquals(16 * (i), b.length());
+            assertEquals(16 * (i+1), b.length());
         }
 
         b = new Bytecode(null, 0, 0);
@@ -204,8 +199,7 @@ public class BytecodeTest extends TestCase {
 
     public void testDescriptor() throws Exception {
         assertEquals("(II)", Descriptor.getParamDescriptor("(II)V"));
-        /*assertEquals("()", Descriptor.getParamDescriptor("()I"));*/
-        assertEquals("V", Descriptor.getParamDescriptor("()I"));
+        assertEquals("()", Descriptor.getParamDescriptor("()I"));
 
         assertEquals(1, Descriptor.dataSize("I"));
         assertEquals(2, Descriptor.dataSize("D"));

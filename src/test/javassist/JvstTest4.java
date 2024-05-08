@@ -133,8 +133,7 @@ public class JvstTest4 extends JvstTestRoot {
         cc2.writeFile();
         Object obj = make(cc.getName());
         assertEquals("test4.Rename2", obj.getClass().getName());
-        /*assertEquals(14, invoke(obj, "run"));*/
-        assertEquals(44, invoke(obj, "run"));
+        assertEquals(14, invoke(obj, "run"));
     }
 
     public void testRename2() throws Exception {
@@ -143,8 +142,7 @@ public class JvstTest4 extends JvstTestRoot {
         cc.rebuildClassFile();
         cc.writeFile();
         Object obj = make(cc.getName());
-        /*assertEquals(3, invoke(obj, "run"));*/
-        assertEquals(4, invoke(obj, "run"));
+        assertEquals(3, invoke(obj, "run"));
     }
 
     public void testJIRA93() throws Exception {
@@ -175,8 +173,7 @@ public class JvstTest4 extends JvstTestRoot {
         mth.instrument(conv);
         cc.writeFile();
         Object obj = make(cc.getName());
-        /*assertEquals(10, invoke(obj, "run"));*/
-        assertEquals(11, invoke(obj, "run"));
+        assertEquals(10, invoke(obj, "run"));
     }
 
     public void testClassFileWriter() throws Exception {
@@ -234,8 +231,7 @@ public class JvstTest4 extends JvstTestRoot {
         fos.close();
         Object obj = make("test4.WrittenFile");
         assertNotNull(obj);
-        /*assertEquals(2, invoke(obj, "foo"));*/
-        assertEquals(4, invoke(obj, "foo"));
+        assertEquals(2, invoke(obj, "foo"));
     }
 
     public void testClassFileWriter2() throws Exception {
@@ -345,8 +341,7 @@ public class JvstTest4 extends JvstTestRoot {
 
         Object obj = make("test4.WrittenFile3");
         assertNotNull(obj);
-        /*assertEquals(2, invoke(obj, "foo"));*/
-        assertEquals(5, invoke(obj, "foo"));
+        assertEquals(2, invoke(obj, "foo"));
     }
 
     public void testCtArray() throws Exception {

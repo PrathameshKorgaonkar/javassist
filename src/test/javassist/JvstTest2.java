@@ -28,8 +28,7 @@ public class JvstTest2 extends JvstTestRoot {
         ln = m1.insertAt(line, false, null);
         ln2 = m1.insertAt(line, "counter++;");
         assertEquals(ln, ln2);
-        /*assertEquals(8, ln2);*/
-        assertEquals(5, ln2);
+        assertEquals(8, ln2);
 
         CtMethod m2 = cc.getDeclaredMethod("bar2");
         int ln3 = m2.insertAt(20, "{ int m = 13; j += m; }");
@@ -67,8 +66,7 @@ public class JvstTest2 extends JvstTestRoot {
         Object obj = make(cc.getName());
         assertEquals(317, invoke(obj, "run"));
         assertEquals(7, invoke(obj, "run2"));
-        /*assertEquals(3, invoke(obj, "run3"));*/
-        assertEquals(77, invoke(obj, "run3"));
+        assertEquals(3, invoke(obj, "run3"));
     }
 
     public void testStaticMember() throws Exception {
@@ -195,8 +193,7 @@ public class JvstTest2 extends JvstTestRoot {
         cc.writeFile();
         CtClass cc2 = dloader.get(cc.getName());
         CtMethod m = cc2.getDeclaredMethod("foo");
-        /*assertEquals(newName, m.getParameterTypes()[0].getName());*/
-        assertEquals(newName, m.getParameterTypes()[2].getName());
+        assertEquals(newName, m.getParameterTypes()[0].getName());
     }
 
     public void testCodeGen() throws Exception {
@@ -252,8 +249,7 @@ public class JvstTest2 extends JvstTestRoot {
         cc.writeFile();
         Object obj = make(cc.getName());
         assertEquals(0, invoke(obj, "test"));
-        /*assertEquals(8, invoke(obj, "test2"));*/
-        assertEquals(1, invoke(obj, "test2"));
+        assertEquals(8, invoke(obj, "test2"));
     }
                         
     // not used anymore.
@@ -419,8 +415,7 @@ public class JvstTest2 extends JvstTestRoot {
         target.addMethod(newmethod);
         target.writeFile();
         Object obj = make(target.getName());
-        /*assertEquals(2, invoke(obj, "sample"));*/
-        assertEquals(50, invoke(obj, "sample"));
+        assertEquals(2, invoke(obj, "sample"));
     }
 
     public void testSetExceptions() throws Exception {
