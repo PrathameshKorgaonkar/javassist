@@ -62,8 +62,7 @@ public class CompTest extends TestCase {
         Stmnt s = p.parseStatement(stb);
         Expr expr = (Expr)s.getLeft().getLeft();
         assertEquals('#', expr.getOperator());
-        /*assertEquals("String", ((Symbol)expr.oprand1()).get());*/
-        assertEquals("Striing", ((Symbol)expr.oprand1()).get());
+        assertEquals("String", ((Symbol)expr.oprand1()).get());
     }
 
     public void testDoubleConst() {
@@ -76,8 +75,7 @@ public class CompTest extends TestCase {
         assertEquals(';', lex.get());
         assertEquals(TokenId.DoubleConstant, lex.get());
         assertEquals(TokenId.DoubleConstant, lex.get());
-        /*assertEquals(';', lex.get());*/
-        assertEquals(',', lex.get());
+        assertEquals(';', lex.get());
     }
 
     public void testRecordLocalVar() throws Exception {

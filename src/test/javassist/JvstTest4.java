@@ -279,8 +279,7 @@ public class JvstTest4 extends JvstTestRoot {
         sub.addMethod(CtMethod.make("public int foo() { move(0, 1); return 1; }", sub));
         sub.writeFile();
         Object obj = make("test4.WrittenFile2sub");
-        /*assertEquals(1, invoke(obj, "foo"));*/
-        assertEquals(2, invoke(obj, "foo"));
+        assertEquals(1, invoke(obj, "foo"));
     }
 
     public void testClassFileWriter3() throws Exception {

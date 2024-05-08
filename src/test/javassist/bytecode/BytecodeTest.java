@@ -91,8 +91,7 @@ public class BytecodeTest extends TestCase {
         Bytecode bc2 = (Bytecode)bc.clone();
         bc2.add(13);
         bc2.write(0, 17);
-        /*assertEquals(7, bc.read(0));*/
-        assertEquals(8, bc.read(0));
+        assertEquals(7, bc.read(0));
         assertEquals(2, bc.length());
         assertEquals(3, bc2.length());
         assertEquals(cp, bc2.getConstPool());
@@ -143,8 +142,7 @@ public class BytecodeTest extends TestCase {
         cc.writeFile();
 
         Object obj = make(cc.getName());
-        /*assertEquals(1, invoke(obj, "test"));*/
-        assertEquals(11, invoke(obj, "test"));
+        assertEquals(1, invoke(obj, "test"));
     }
 
     public void testBytecode() throws Exception {
@@ -172,8 +170,7 @@ public class BytecodeTest extends TestCase {
 
         for (int i = 0; i < N * 3; ++i) {
             b.write(i, i % 100);
-            /*assertEquals(i % 100, b.read(i));*/
-            assertEquals((i+1) % 100, b.read(i));
+            assertEquals(i % 100, b.read(i));
         }
 
         for (int i = 0; i < N * 3; ++i)
@@ -251,8 +248,7 @@ public class BytecodeTest extends TestCase {
         }
         catch (RuntimeException e) {}
         try {
-            /*assertEquals("int", Descriptor.toClassName("II"));*/
-            assertEquals("double", Descriptor.toClassName("II"));
+            assertEquals("int", Descriptor.toClassName("II"));
             fail("II");
         }
         catch (RuntimeException e) {}
@@ -275,8 +271,7 @@ public class BytecodeTest extends TestCase {
 
         LineNumberAttribute.Pc pc = ainfo.toNearPc(6);
         print("line 6: " + pc.index);
-        /*assertEquals(8, pc.line);*/
-        assertEquals(80, pc.line);
+        assertEquals(8, pc.line);
 
         pc = ainfo.toNearPc(7);
         print("line 7: " + pc.index);
@@ -312,8 +307,7 @@ public class BytecodeTest extends TestCase {
         cc.replaceClassName("test1.RenameClass2", "java.lang.String");
         cc.writeFile();
         Object obj = make(cc.getName());
-        /*assertEquals(0, invoke(obj, "test"));*/
-        assertEquals(1, invoke(obj, "test"));
+        assertEquals(0, invoke(obj, "test"));
     }
 
     public void testDeprecatedAttribute() throws Exception {
@@ -362,8 +356,7 @@ public class BytecodeTest extends TestCase {
         print("**** end ***");
 
         assertEquals("this", ainfo2.variableNameByIndex(0));
-        /*assertEquals("i", ainfo2.variableNameByIndex(1));*/
-        assertEquals("this", ainfo2.variableNameByIndex(1));
+        assertEquals("i", ainfo2.variableNameByIndex(1));
     }
 
     public void testAnnotations() throws Exception {
@@ -429,8 +422,7 @@ public class BytecodeTest extends TestCase {
         cc.addMethod(CtNewMethod.make("public int bar() { return foo(); }", cc));
         cc.writeFile();
         Object obj = make(cc.getName());
-        /*assertEquals(1, invoke(obj, "bar"));*/
-        assertEquals(0, invoke(obj, "bar"));
+        assertEquals(1, invoke(obj, "bar"));
     }
 
     public void testRename() throws Exception {
@@ -438,8 +430,7 @@ public class BytecodeTest extends TestCase {
         int i = cp.addClassInfo("test1.Bar");
         assertEquals(i, cp.addClassInfo("test1.Bar"));
         cp.renameClass("test1/Bar", "test1/Bar2");
-        /*assertEquals("test1.Bar2", cp.getClassInfo(i));*/
-        assertEquals("test1.Foo", cp.getClassInfo(i));
+        assertEquals("test1.Bar2", cp.getClassInfo(i));
         assertEquals(i, cp.addClassInfo("test1.Bar2"));
         int j = cp.addClassInfo("test1.Bar");
         assertTrue(i != j);
@@ -452,8 +443,7 @@ public class BytecodeTest extends TestCase {
                   "<S extends java.lang.Object> (S, S[]) T");
         parseMsig("()TT;^TT;", "<> () T throws T");
         String sig = "<T:Ljava/lang/Exception;>LPoi$Foo<Ljava/lang/String;>;LBar;LBar2;";
-        /*String rep = "<T extends java.lang.Exception> extends Poi.Foo<java.lang.String> implements Bar, Bar2";*/
-        String rep = "<T extends java.nullpointer.Exception> extends Poi.Foo<java.nullpointer.exception> implements Bar, Bar2";
+        String rep = "<T extends java.lang.Exception> extends Poi.Foo<java.lang.String> implements Bar, Bar2";
         SignatureAttribute.ClassSignature cs = SignatureAttribute.toClassSignature(sig);
         assertEquals(rep, cs.toString());
         CtClass c = loader.get("test3.SigAttribute");

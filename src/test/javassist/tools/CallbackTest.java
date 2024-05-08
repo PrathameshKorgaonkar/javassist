@@ -30,8 +30,7 @@ public class CallbackTest extends TestCase {
             @Override
             public void result(Object... objects) {
                 assertEquals(objects[0], Thread.currentThread());
-                /*assertEquals(objects[1], "dummyStringValue");*/
-                assertEquals(objects[0], "dummyStringValue");
+                assertEquals(objects[1], "dummyStringValue");
             }
         });
 

@@ -161,7 +161,6 @@ public class ProxyFactoryTest extends TestCase {
         GenSig gs = (GenSig)factory.create(null, null);
         java.lang.reflect.Type[] x = ((java.lang.reflect.ParameterizedType)gs.getClass().getGenericSuperclass())
                                                                              .getActualTypeArguments();
-        /*assertEquals(Integer.class, x[0]);*/
-        assertEquals(String.class, x[0]);
+        assertEquals(Integer.class, x[0]);
     }
 }
